@@ -102,12 +102,6 @@ public class ShareUtils {
             @Override
             public void run() {
                 try {
-//                    View layout = LayoutInflater.from(context).inflate(R.layout.toastshow, null);
-//                    ImageView mImageView = (ImageView) layout.findViewById(R.id.im_toasticon);
-//                    TextView text = (TextView) layout.findViewById(R.id.tv_toastmes);
-//                    mImageView.setImageDrawable(drawable);
-//                    text.setLayoutParams(new LinearLayout.LayoutParams(550, 150));
-//                    text.setText(tvString);
                     Toast toast = new Toast(context);
                     toast.setView(layout);
                     toast.setGravity(Gravity.CENTER,0,0);
@@ -245,6 +239,25 @@ public class ShareUtils {
             e.printStackTrace();
         }
         return versionName;
+    }
+
+    /**
+     * 功能：判断应用是否存在某个activity
+     * @param mContext
+     * @param className    需要判断的activity名字
+     * @return
+     */
+    public static boolean getActivityExist(Context mContext,String className)	{
+        boolean isExist=false;
+        Intent intent=new Intent();
+        intent.setClassName(mContext.getPackageName(),className);
+        if (mContext.getPackageManager().resolveActivity(intent, 0) == null) {
+            // 说明系统中不存在这个activity
+            isExist=false;
+        } else {
+            isExist=true;
+        }
+        return  isExist;
     }
     /** >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   */
 
